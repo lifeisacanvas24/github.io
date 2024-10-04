@@ -1,0 +1,53 @@
+name: Deploy Zola site to Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        run: |
+          sudo snap install --edge zola
+          zola --version
+
+      - name: Build with Zola
+        run: zola build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.email "agriyain2k@gmail.com"
+          git config --global user.name "lifeisacanvas24"
+          git checkout -b gh-pages
+          cp -r public/* .
+          rm -rf public/
+          git add .
+          git commit -m "Deploy to gh-pages"
+          git push --force origin gh-pages
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
