@@ -1,0 +1,81 @@
+<nav class="navbar header-gradient" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{{ config.base_url }}">
+            <img src="{{ get_url(path=config.extra.logo_url) }}" alt="Site Logo" style="max-height: 3rem;">        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{{ config.base_url }}">
+                <span class="icon-text">
+                    <span class="icon has-text-primary">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span>Home</span>
+                </span>
+            </a>
+            <a class="navbar-item" href="{{ config.base_url }}/who-we-are">
+                <span class="icon-text">
+                    <span class="icon has-text-danger">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span>Who We Are</span>
+                </span>
+            </a>
+            <a class="navbar-item" href="{{ config.base_url }}/what-we-do">
+                <span class="icon-text">
+                    <span class="icon has-text-info">
+                        <i class="fas fa-briefcase"></i>
+                    </span>
+                    <span>What We Do</span>
+                </span>
+            </a>
+            <a class="navbar-item" href="{{ config.base_url }}/blog">
+                <span class="icon-text">
+                    <span class="icon has-text-success">
+                        <i class="fas fa-blog"></i>
+                    </span>
+                    <span>Blog</span>
+                </span>
+            </a>
+            <a class="navbar-item" href="{{ config.base_url }}/shop">
+                <span class="icon-text">
+                    <span class="icon has-text-warning">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <span>Shop</span>
+                </span>
+            </a>
+            <a class="navbar-item" href="{{ config.base_url }}/contact-us">
+                <span class="icon-text">
+                    <span class="icon has-text-link">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <span>Contact Us</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <a href="{{ config.extra.social_instagram }}" class="icon has-text-pink">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="{{ config.extra.social_youtube }}" class="icon has-text-danger">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="{{ config.extra.social_twitter }}" class="icon has-text-info">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="{{ config.extra.social_facebook }}" class="icon has-text-blue">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

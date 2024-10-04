@@ -1,0 +1,52 @@
+{% import "macros/macro-blog-listing.html" as blog_listing %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<article class="content">
+    {% set current_path = current_path | default(value="") | trim_start_matches(pat="/") %}
+    {% if page %}
+        {# This is an individual page #}
+        <h1 class="title">{{ page.title }}</h1>
+
+               <!-- Display breadcrumb -->
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        {% for ancestor in page.ancestors %}
+            {% if not loop.first %}
+                {% set ancestor_section = get_section(path=ancestor, include_pages=false) %}
+                <li><a href="{{ ancestor_section.permalink }}">{{ ancestor_section.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+        <p class="subtitle">{{ page.description }}</p>
+
+        <!-- Display individual page content -->
+        {{ page.content | safe }}
+
+        <!-- Display tags if available -->
+        {% if page.taxonomies.tags %}
+            <div class="tags">
+                {% for tag in page.taxonomies.tags %}
+                    <span class="tag is-info">
+                        <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">{{ tag }}</a>
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!-- Pagination for navigation -->
+        {% if paginator %}
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                {% if paginator.previous %}
+                    <a class="pagination-previous" href="{{ paginator.previous }}">Previous</a>
+                {% endif %}
+                {% if paginator.next %}
+                    <a class="pagination-next" href="{{ paginator.next }}">Next page</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    {% endif %}
+</article>
+{% endblock content %}

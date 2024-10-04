@@ -1,0 +1,117 @@
+{% import "macros/macro-blog-listing.html" as blog_listing %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <article class="content">
+
+            {% if page %}
+            <!-- Title -->
+            <h1 class="title">{{ page.title }}</h1>
+
+            <!-- Display tags if available -->
+            {% if page.taxonomies.tags %}
+            <div class="tags">
+                {% for tag in page.taxonomies.tags %}
+                    <span class="tag is-info">
+                        <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">{{ tag }}</a>
+                    </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Post metadata and breadcrumb -->
+            <div class="post-meta">
+                <div class="level mb-2">
+                    {% if page.date %}
+                    <div class="level-left">
+                        <div class="level-item">
+                            <p class="post-date">Published on: {{ page.date | date(format="%B %d, %Y") }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if page.updated %}
+                    <div class="level-left">
+                        <div class="level-item">
+                            <p>Updated on: {{ page.updated | date(format="%B %d, %Y") }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if page.read_time %}
+                    <div class="level-left">
+                        <div class="level-item">
+                            <p class="post-read-time">Approx. read time: {{ page.read_time }} minutes</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Breadcrumb with reduced spacing -->
+                <div class="level-left">
+                <nav class="breadcrumb is-small is-left has-arrow-separator" aria-label="breadcrumbs">
+                    <ul>
+                        {% set current_path = "/blog" %}
+                        <li>
+                            <a href="{{ current_path }}">
+                                <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                Blog
+                            </a>
+                        </li>
+
+                        {% set_global accumulated_path = current_path %}
+                        {% for component in page.components %}
+                            {% if component != "blog" and component != page.slug %}
+                                {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
+                                <li>
+                                    <a href="{{ accumulated_path | lower }}">
+                                        <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                        {{ component | capitalize }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Page description -->
+            <p class="subtitle">{{ page.description }}</p>
+
+            <!-- Display individual page content -->
+            <div class="content">
+                {{ page.content | safe }}
+            </div>
+
+            <!-- Blog listing macro -->
+            <div class="blog-posts">
+                {{ blog_listing::get_combined_posts(
+                    section_paths=config.extra.blog_sections_path,
+                    published_date=true,
+                    updated_date=true,
+                    tags_display=false,
+                    tag_link=false,
+                    no_of_posts=5,
+                    section_name="blog-listing",
+                    show_post_summary=true,
+                    show_breadcrumb=false
+                ) }}
+            </div>
+
+            <!-- Pagination for navigation -->
+            {% if paginator %}
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                {% if paginator.previous %}
+                    <a class="pagination-previous" href="{{ paginator.previous }}">Previous</a>
+                {% endif %}
+                {% if paginator.next %}
+                    <a class="pagination-next" href="{{ paginator.next }}">Next page</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+            {% endif %}
+        </article>
+    </div>
+</section>
+{% endblock content %}

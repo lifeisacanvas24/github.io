@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taxonomy.name | capitalize }}s - Your Site Name{% endblock %}
+
+{% block content %}
+<h1 class="title">All {{ taxonomy.name | capitalize }}s</h1>
+
+<div class="tags are-medium">
+{% for term in terms %}
+    <span class="tag is-link">
+        <a href="{{ term.permalink }}" class="has-text-white">{{ term.name }}</a>
+        <span class="tag is-light ml-2">{{ term.pages | length }}</span>
+    </span>
+{% endfor %}
+</div>
+{% endblock %}

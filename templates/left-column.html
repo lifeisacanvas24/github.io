@@ -1,0 +1,44 @@
+<aside class="menu" style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
+    <!-- Latest Blog Posts -->
+    <p class="menu-label" style="font-weight: bold; color: #333;">Recent Posts</p>
+    <ul class="menu-list">
+      {% include "recent-posts.html" %}
+    </ul>
+
+    <!-- Social Media Links -->
+    <p class="menu-label" style="font-weight: bold; color: #333;">Follow Us</p>
+    <ul class="menu-list">
+        <li>
+            <a href="{{ config.extra.social_instagram }}" target="_blank" style="color: #333;">
+                <span class="icon">
+                    <i class="fab fa-instagram"></i>
+                </span>
+                Instagram
+            </a>
+        </li>
+        <li>
+            <a href="{{ config.extra.social_youtube }}" target="_blank" style="color: #333;">
+                <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                </span>
+                YouTube
+            </a>
+        </li>
+        <li>
+            <a href="{{ config.extra.social_twitter }}" target="_blank" style="color: #333;">
+                <span class="icon">
+                    <i class="fab fa-twitter"></i>
+                </span>
+                Twitter
+            </a>
+        </li>
+        <li>
+            <a href="{{ config.extra.social_facebook }}" target="_blank" style="color: #333;">
+                <span class="icon">
+                    <i class="fab fa-facebook"></i>
+                </span>
+                Facebook
+            </a>
+        </li>
+    </ul>
+</aside>

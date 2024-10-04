@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero is-small" style="background: linear-gradient(to bottom, #e0e7ec, #ffffff); padding: 2rem 0;">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+                Life is a Canvas - Your Vision, Our Craft
+            </h1>
+            <h2 class="subtitle">
+                Creating modern, responsive designs with ease.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<!-- Intro Video Section -->
+<section class="section intro-video">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-9">
+                <div class="video-container">
+                    <figure class="image is-16by9">
+                        <video class="has-ratio" controls>
+                            <source src="{{ get_url(path='media/life-is-a-canvas-intro-video.mp4') }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </figure>
+                </div>
+                <div class="content has-text-centered">
+                    <p class="subtitle is-5">{{ section.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Content Section -->
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-9">
+                <div class="content">
+                    {% if section.content %}
+                        {{ section.content | safe }}
+                    {% else %}
+                        <p>No content available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

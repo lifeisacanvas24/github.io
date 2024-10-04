@@ -1,0 +1,20 @@
+{% import "macros/macro-blog-listing.html" as blog_listing %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="blog-posts">
+    <h1 class="title">{{ section.title }}</h1>
+    {{ blog_listing::get_combined_posts(
+        section_paths=config.extra.blog_sections_path,
+        published_date=true,
+        updated_date=true,
+        tags_display=true,
+        tag_link=true,
+        no_of_posts=10,
+        section_name="blog-listing",
+        show_post_summary=false,
+        show_breadcrumb=true
+    ) }}
+</div>
+{% endblock content %}

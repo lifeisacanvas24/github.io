@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Contact Us</h1>
+
+        <form action="/submit-contact" method="POST">
+            <!-- Start of the two-column grid layout -->
+            <div class="columns is-multiline">
+                <div class="column is-half">
+                    <div class="field">
+                        <label class="label" for="name">Your Name</label>
+                        <div class="control">
+                            <input id="name" name="name" class="input" type="text" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="field">
+                        <label class="label" for="phone">Phone Number</label>
+                        <div class="control">
+                            <input id="phone" name="phone" class="input" type="tel" placeholder="Enter your phone number" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="field">
+                        <label class="label" for="email">Email Address</label>
+                        <div class="control">
+                            <input id="email" name="email" class="input" type="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="field">
+                        <label class="label" for="reason">Reason for Contacting Us</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="reason" name="reason">
+                                    <option value="" disabled selected>Select a reason</option>
+                                    <option>Review a Product</option>
+                                    <option>Review a Service</option>
+                                    <option>Regarding Stock Market</option>
+                                    <option>Regarding Yoga</option>
+                                    <option>Regarding Technology</option>
+                                    <option>Regarding Recipes</option>
+                                    <option>Regarding Media Editing</option>
+                                    <option>Social Media Posting</option>
+                                    <option>Love to catch up for a coffee</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full-width Additional Comments field -->
+                <div class="column is-full">
+                    <div class="field">
+                        <label class="label" for="additional">Additional Comments</label>
+                        <div class="control">
+                            <textarea id="additional" name="additional_comments" class="textarea" placeholder="Feel free to share anything else with us..." rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary is-fullwidth">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

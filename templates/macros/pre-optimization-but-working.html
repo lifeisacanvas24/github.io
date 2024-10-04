@@ -1,0 +1,110 @@
+{% macro get_combined_posts(
+    section_paths,
+    published_date=true,
+    updated_date=true,
+    tags_display=false,
+    tag_link=false,
+    no_of_posts=5,
+    section_name="blog-listing",
+    show_post_summary=false,
+    show_breadcrumb=false
+) %}
+    {# Initialize feed #}
+    {% set_global feed = [] %}
+
+    {# Process each section path and add posts to the feed #}
+    {% for path in section_paths %}
+        {% set section = get_section(path=path) %}
+        {% if section.pages | length > 0 %}
+            {% set_global feed = feed | concat(with=section.pages) %}
+        {% endif %}
+
+        {# Include pages from subsections #}
+        {% for sub_path in section.subsections %}
+            {% set sub_section = get_section(path=sub_path) %}
+            {% if sub_section.pages | length > 0 %}
+                {% set_global feed = feed | concat(with=sub_section.pages) %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {# Sort feed by date (newest first) and limit posts #}
+    {% set sorted_feed = feed | sort(attribute="date", order="desc") | slice(end=no_of_posts) %}
+
+    {# Display the feed with custom section styling #}
+    <div class="{{ section_name }}-container">
+        <ul class="blog-listing {{ section_name }}">
+            {% if sorted_feed | length == 0 %}
+                <li class="skeleton-loading">Loading...</li>
+            {% else %}
+                {% for page in sorted_feed %}
+                    <li class="{{ section_name }}-item">
+                        <a href="{{ page.permalink | safe }}" class="post-title">{{ page.title }}</a>
+
+                        {# Show published/updated dates #}
+                        {% if published_date %}
+                            <span class="post-date">Published: {{ page.date | date(format="%Y-%m-%d") }}</span>
+                        {% endif %}
+                        {% if updated_date and page.updated %}
+                            <span class="post-updated">Updated: {{ page.updated | date(format="%Y-%m-%d") }}</span>
+                        {% endif %}
+
+                        {# Show tags if enabled #}
+                        {% if tags_display and page.taxonomies.tags %}
+                            <div class="post-tags">
+                                Tags:
+                                {% for tag in page.taxonomies.tags %}
+                                    {% if tag_link %}
+                                        <span class="tag is-info">
+                                            <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">
+                                                <i class="fas fa-tag"></i> {{ tag }}
+                                            </a>
+                                        </span>
+                                    {% else %}
+                                        <span class="tag is-info">
+                                            <i class="fas fa-tag"></i> {{ tag }}
+                                        </span>
+                                    {% endif %}
+                                    {% if not loop.last %} {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {# Show breadcrumb using components (sections) #}
+                        {% if show_breadcrumb %}
+                            <nav class="breadcrumb" aria-label="breadcrumbs">
+                                <ul>
+                                    {% set current_path = "/blog" %}
+                                    <li>
+                                        <a href="{{ current_path }}">
+                                            <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                            Blog
+                                        </a>
+                                    </li>
+
+                                    {% set_global accumulated_path = current_path %}
+                                    {% for component in page.components %}
+                                        {% if component != "blog" and component != page.slug %}
+                                            {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
+                                            <li>
+                                                <a href="{{ accumulated_path | lower }}">
+                                                    <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                                    {{ component | capitalize }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+
+                        {# Show post summary if enabled #}
+                        {% if show_post_summary %}
+                            <p class="post-summary">{{ page.summary | safe }}</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+{% endmacro %}

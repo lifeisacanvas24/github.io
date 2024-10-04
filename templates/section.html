@@ -1,0 +1,40 @@
+{% import "macros/macro-blog-listing.html" as blog_listing %}
+{% extends "base.html" %}
+{% block content %}
+<article class="content">
+ {% set current_path = section.relative_path | default(value="") | trim_start_matches(pat="/") %}
+ <h1 class="title">{{ section.title }}</h1>
+ <p class="subtitle">{{ section.description }}</p>
+ {% if section.content %}
+ <div class="section-content">
+ {{ section.content | safe }}
+ </div>
+ {% endif %}
+ <div class="columns">
+ {# Main content column #}
+ <div class="column">
+ {{ blog_listing::get_combined_posts(
+ section_paths=[current_path],
+ published_date=true,
+ updated_date=true,
+ tags_display=true,
+ tag_link=true,
+ no_of_posts=5,
+ section_name="main-content",
+ show_post_summary=true,
+ show_breadcrumb=true
+ ) }}
+ </div>
+ </div>
+ <!-- Pagination for navigation -->
+ {% if paginator %}
+ <nav class="pagination" role="navigation" aria-label="pagination">
+ {% if paginator.previous %}
+ <a class="pagination-previous" href="{{ paginator.previous }}">Previous</a>
+ {% endif %}
+ {% if paginator.next %}
+ <a class="pagination-next" href="{{ paginator.next }}">Next page</a>
+ {% endif %}
+ </nav>
+ {% endif %}
+{% endblock content %}
