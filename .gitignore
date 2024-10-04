@@ -1,0 +1,29 @@
+# Ignore the Zola build output folder
+working-rough-css-lifeisacanvas/
+
+# Ignore temporary files created by editors or OS
+*.swp
+*.swo
+.DS_Store
+*.tmp
+*.log
+
+# Ignore Zola cache files
+.cache/
+
+# Ignore code snipet folder
+.bin/
+# Ignore system-specific files
+*.bak
+*~
+Thumbs.db
+
+# If you use VSCode or another IDE, exclude its configuration
+.vscode/
+.idea/
+
+# Ignore node_modules if you are using npm for any packages
+node_modules/
+
+# Ignore any secrets or environment files
+.env
