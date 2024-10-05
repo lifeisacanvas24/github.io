@@ -7,7 +7,9 @@
     no_of_posts=5,
     section_name="blog-listing",
     show_post_summary=false,
-    show_breadcrumb=false
+    show_breadcrumb=false,
+    show_pagination=false,
+    current_page=1
 ) %}
     {# Initialize feed #}
     {% set_global feed = [] %}
@@ -28,16 +30,23 @@
         {% endfor %}
     {% endfor %}
 
-    {# Sort feed by date (newest first) and limit posts #}
-    {% set sorted_feed = feed | sort(attribute="date", order="desc") | slice(end=no_of_posts) %}
+    {# Sort feed by date (newest first) #}
+    {% set sorted_feed = feed | sort(attribute="date", order="desc") %}
+
+    {# Pagination logic #}
+    {% set total_posts = sorted_feed | length %}
+    {% set total_pages = (total_posts / no_of_posts) | round(method="ceil") | int %}
+    {% set start_index = (current_page - 1) * no_of_posts %}
+    {% set end_index = start_index + no_of_posts %}
+    {% set paginated_feed = sorted_feed | slice(start=start_index, end=end_index) %}
 
     {# Display the feed with custom section styling #}
     <div class="{{ section_name }}-container">
         <ul class="blog-listing {{ section_name }}">
-            {% if sorted_feed | length == 0 %}
+            {% if paginated_feed | length == 0 %}
                 <li class="skeleton-loading">Loading...</li>
             {% else %}
-                {% for page in sorted_feed %}
+                {% for page in paginated_feed %}
                     <li class="{{ section_name }}-item">
                         <a href="{{ page.permalink | safe }}" class="post-title">{{ page.title }}</a>
 
@@ -69,32 +78,32 @@
                             </div>
                         {% endif %}
 
-                        {# Show breadcrumb using components (sections) #}
+                        {# Show breadcrumb #}
                         {% if show_breadcrumb %}
-                        <nav class="breadcrumb" aria-label="breadcrumbs">
-                            <ul>
-                                {% set current_path = "/blog" %}
-                                <li>
-                                    <a href="{{ current_path }}">
-                                        <span class="icon is-small"><i class="fas fa-folder"></i></span>
-                                        Blog
-                                    </a>
-                                </li>
+                            <nav class="breadcrumb" aria-label="breadcrumbs">
+                                <ul>
+                                    {% set current_path = "/blog" %}
+                                    <li>
+                                        <a href="{{ current_path }}">
+                                            <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                            Blog
+                                        </a>
+                                    </li>
 
-                                {% set_global accumulated_path = current_path %}
-                                {% for component in page.components %}
-                                    {% if component != "blog" and component != page.slug %}
-                                        {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
-                                        <li>
-                                            <a href="{{ accumulated_path | lower }}">
-                                                <span class="icon is-small"><i class="fas fa-folder"></i></span>
-                                                {{ component | capitalize }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </nav>
+                                    {% set_global accumulated_path = current_path %}
+                                    {% for component in page.components %}
+                                        {% if component != "blog" and component != page.slug %}
+                                            {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
+                                            <li>
+                                                <a href="{{ accumulated_path | lower }}">
+                                                    <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                                    {{ component | capitalize }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </nav>
                         {% endif %}
 
                         {# Show post summary if enabled #}
@@ -105,5 +114,61 @@
                 {% endfor %}
             {% endif %}
         </ul>
+
+        {# Pagination navigation using Bulma classes #}
+        {% if show_pagination and total_pages > 1 %}
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {% if current_page > 1 %}
+                    <a href="?page={{ current_page - 1 }}" class="pagination-previous">Previous</a>
+                {% else %}
+                    <a class="pagination-previous" disabled>Previous</a>
+                {% endif %}
+
+                {% if current_page < total_pages %}
+                    <a href="?page={{ current_page + 1 }}" class="pagination-next">Next</a>
+                {% else %}
+                    <a class="pagination-next" disabled>Next</a>
+                {% endif %}
+
+                <ul class="pagination-list">
+                    {# First page #}
+                    {% if current_page > 2 %}
+                        <li>
+                            <a href="?page=1" class="pagination-link" aria-label="Goto page 1">1</a>
+                        </li>
+                        {% if current_page > 3 %}
+                            <li><span class="pagination-ellipsis">&hellip;</span></li>
+                        {% endif %}
+                    {% endif %}
+
+                    {# Current page and surrounding pages #}
+                    {% for page_num in range(
+                        start=[current_page - 1, 1] | max,
+                        end=[current_page + 1, total_pages] | min + 1
+                    ) %}
+                        <li>
+                            <a href="?page={{ page_num }}"
+                               class="pagination-link {% if page_num == current_page %}is-current{% endif %}"
+                               aria-label="Page {{ page_num }}"
+                               {% if page_num == current_page %}aria-current="page"{% endif %}>
+                                {{ page_num }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                    {# Last page #}
+                    {% if current_page < total_pages - 1 %}
+                        {% if current_page < total_pages - 2 %}
+                            <li><span class="pagination-ellipsis">&hellip;</span></li>
+                        {% endif %}
+                        <li>
+                            <a href="?page={{ total_pages }}" class="pagination-link" aria-label="Goto page {{ total_pages }}">
+                                {{ total_pages }}
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
     </div>
 {% endmacro %}

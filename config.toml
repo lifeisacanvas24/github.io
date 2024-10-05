@@ -64,6 +64,16 @@ blog_sections_path = [
  "blog/lifestyle/fashion/_index.md",
  "blog/lifestyle/health-and-wellness/_index.md"
 ]
+
+# Add this to your config.toml
+get_page_number = """
+    function get_page_number() {
+        var params = new URLSearchParams(window.location.search);
+        return parseInt(params.get('page')) || 1;
+    }
+"""
+
+
 social_facebook = "https://www.facebook.com/profile.php?id=61557380600645"
 social_twitter = "https://twitter.com/lifeisacanvas20"
 social_instagram = "https://instagram.com/lifeisacanvas24"
