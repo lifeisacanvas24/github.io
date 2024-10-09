@@ -1,0 +1,4 @@
+ubuntu@ip-172-31-46-136:~/lifeisacanvas24.github.io/zola-admin$ curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"username": "admin", "password": "password123"}'
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjg3MTEyMDIsInVzZXJuYW1lIjoiYWRtaW4ifQ.Av3iv75Nf3F-CsOyWZ5KMsVH_QH4LUmdy5HH6iFZaeM"}ubuntu@ip-172-31-46-136:~/lifeisacanvas24.github.io/zola-admin$
+
+git add . && git commit -m "Pushing dynamic started kit for zola using fiber go-lang" && git push origin master

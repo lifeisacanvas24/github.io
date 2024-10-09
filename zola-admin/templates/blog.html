@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Blog Posts</title>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Blog Posts</h1>
+            <table class="table is-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody id="blogPostList">
+                    <!-- Blog posts will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        async function fetchBlogPosts() {
+            const response = await fetch('/blog/posts');
+            const posts = await response.json();
+            const blogPostList = document.getElementById('blogPostList');
+            posts.forEach(post => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${post.title}</td>
+                    <td>${post.category}</td>
+                    <td>${post.rating}</td>
+                `;
+                blogPostList.appendChild(row);
+            });
+        }
+
+        fetchBlogPosts();
+    </script>
+</body>
+</html>
