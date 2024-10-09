@@ -2,6 +2,8 @@ package models
 
 import (
     "gorm.io/gorm"
+    "time" // Add this import for the time package
+
 )
 
 // User model

@@ -3,6 +3,8 @@ module github.com/lifeisacanvas24/lifeisacanvas24.github.io/zola-admin
 go 1.23.2
 
 require (
+    gorm.io/gorm v1.24.0 // Make sure you have the right version
+    gorm.io/driver/sqlite v1.0.0
     github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
