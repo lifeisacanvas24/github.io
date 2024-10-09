@@ -1,9 +1,9 @@
-module zola-admin
-
+// module zola-admin
+module github.com/lifeisacanvas24/lifeisacanvas24.github.io/zola-admin
 go 1.23.2
 
 require (
-	github.com/andybalholm/brotli v1.0.5 // indirect
+    github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect

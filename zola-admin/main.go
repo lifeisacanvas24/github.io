@@ -4,29 +4,26 @@ import (
     "github.com/gofiber/fiber/v2"
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
-//  "/home/ubuntu/lifeisacanvas24.github.io/zola-admin/migrations" // Update with your module path
+    "github.com/lifeisacanvas24/lifeisacanvas24.github.io/zola-admin/models"    // Update with your actual module path
+    "github.com/lifeisacanvas24/lifeisacanvas24.github.io/zola-admin/migrations" // Update with your actual module path
 )
 
 func main() {
-    // Initialize Fiber
     app := fiber.New()
 
-    // Initialize the SQLite database
-    db, err := gorm.Open(sqlite.Open("db.sqlite"), &gorm.Config{})
+    // Initialize database
+    db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
     if err != nil {
-        panic("failed to connect to database")
+        panic("failed to connect database")
     }
 
     // Run migrations
-    if err := migrations.Migrate(db); err != nil {
-        panic("failed to run migrations")
+    err = migrations.Migrate(db)
+    if err != nil {
+        panic("failed to migrate database")
     }
 
-    // Your routes go here
-    app.Get("/", func(c *fiber.Ctx) error {
-        return c.SendString("Hello, World!")
-    })
+    // Other routes and app logic...
 
-    // Start the server
     app.Listen(":3000")
 }
