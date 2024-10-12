@@ -10,29 +10,11 @@
     <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">Admin Dashboard</a>
-            <div class="navbar-burger" id="navbar-burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="navbar-menu" class="navbar-menu">
-            <div class="navbar-end">
-                {% if user.is_authenticated %}
-                    <a class="navbar-item" href="/logout/">Logout</a>
-                {% else %}
-                    <a class="navbar-item" href="/admin/">Login</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+    {% include 'header.html' %} <!-- Include the header -->
 
     <div class="columns">
         <div class="column is-3">
-            {% if user.is_authenticated %}
+            {% if user %}
                 {% include 'sidebar.html' %}
             {% endif %}
         </div>
@@ -42,13 +24,7 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Admin Dashboard</strong> by Your Name.
-            </p>
-        </div>
-    </footer>
+    {% include 'footer.html' %} <!-- Include the footer -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

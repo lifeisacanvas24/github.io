@@ -1,3 +1,4 @@
+
 <!-- templates/header.html -->
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -7,9 +8,11 @@
     </div>
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
-            <a class="navbar-item">
-                Logout
-            </a>
+            {% if user %}
+                <a class="navbar-item" href="/logout/">Logout</a>
+            {% else %}
+                <a class="navbar-item" href="/admin/">Login</a>
+            {% endif %}
         </div>
     </div>
 </nav>
