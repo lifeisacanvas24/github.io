@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Welcome, {{ username }}</h1>
+    <p class="subtitle">You are now logged in.</p>
+<a href="/logout" class="button is-danger">Logout</a>
+
+</div>
+
+{% endblock %}

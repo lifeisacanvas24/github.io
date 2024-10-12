@@ -1,0 +1,23 @@
+<table class="table is-striped is-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <a href="/users/modify/{{ user.id }}" class="button is-small">Edit</a>
+                <a href="/users/delete/{{ user.id }}" class="button is-danger is-small">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
