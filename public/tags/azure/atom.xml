@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>Life is a Canvas - Paint it the way you like it! - azure</title>
-    <link rel="self" type="application/atom+xml" href="http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/tags/azure/atom.xml"/>
-    <link rel="alternate" type="text/html" href="http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/"/>
+    <link rel="self" type="application/atom+xml" href="https://lifeisacanvas24.github.io/tags/azure/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://lifeisacanvas24.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2024-10-02T00:00:00+00:00</updated>
-    <id>http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/tags/azure/atom.xml</id>
+    <id>https://lifeisacanvas24.github.io/tags/azure/atom.xml</id>
     <entry xml:lang="en">
         <title>Top 11 Open Source SaaS Alternatives That Every Startup Needs</title>
         <published>2024-10-02T00:00:00+00:00</published>
@@ -19,10 +19,10 @@
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/blog/technology/our-tech-expeditions/"/>
-        <id>http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/blog/technology/our-tech-expeditions/</id>
+        <link rel="alternate" type="text/html" href="https://lifeisacanvas24.github.io/blog/technology/our-tech-expeditions/"/>
+        <id>https://lifeisacanvas24.github.io/blog/technology/our-tech-expeditions/</id>
         
-        <content type="html" xml:base="http://ec2-16-171-138-200.eu-north-1.compute.amazonaws.com/blog/technology/our-tech-expeditions/">&lt;p&gt;&lt;em&gt;Open-source chat, project management, CRM, meetings, email, documentation, support, data visualization, automation, backends, and an AI chatbot platform.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://lifeisacanvas24.github.io/blog/technology/our-tech-expeditions/">&lt;p&gt;&lt;em&gt;Open-source chat, project management, CRM, meetings, email, documentation, support, data visualization, automation, backends, and an AI chatbot platform.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;Hi there, if you are running a startup or planning to start one, you&#x27;re in the right place. In this article, I will discuss open-source SaaS products that every startup needs. I have curated this list to cover almost all the necessary platforms to ensure smooth operations.&lt;&#x2F;p&gt;
 &lt;p&gt;Usually, startups require tools for chat, project management, CRM, online meetings, email, documentation, customer support, data visualization, workflow automation, backends, and even an AI chatbot platform. Here&#x27;s a list of well-known open-source alternatives for each of these essential tools:&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;1-rocket-chat-for-chat&quot;&gt;1. Rocket.Chat for Chat&lt;&#x2F;h3&gt;

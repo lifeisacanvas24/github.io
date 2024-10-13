@@ -1,27 +1,33 @@
-
+# app/crud.py
 from sqlalchemy.orm import Session
+from fastapi import HTTPException, Request  # Import Request from FastAPI
 from app.models import User
-from app.schemas import UserCreate, UserUpdate
-from passlib.context import CryptContext
-from fastapi import HTTPException
-
-# Use Argon2 hashing scheme
-pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
-
-# Helper function to hash passwords
-def hash_password(password: str) -> str:
-    """Hash a password using pbkdf2_sha256."""
-    return pwd_context.hash(password)
-
-# Helper function to verify passwords
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify a provided password against a hashed password."""
-    return pwd_context.verify(plain_password, hashed_password)
+from app.schemas import UserCreate  # Ensure this is the updated version without email
+from app.utils import hash_password
+import logging
 
 # Function to retrieve a user by username
 def get_user(db: Session, username: str):
     """Retrieve a user by username."""
-    return db.query(User).filter(User.username == username).first()
+    user = db.query(User).filter(User.username == username).first()
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+# Function to get the user from the session token
+async def get_user_from_token(request: Request):
+    """Retrieve user from the session token."""
+    token = request.cookies.get("session_token")
+    # Logic to fetch the user from the token or session
+    # This should return a User object
+    if not token:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    user = await get_user_by_token(token)  # Implement this function to return a User object
+    if user is None:
+        raise HTTPException(status_code=401, detail="User not found")
+
+    return user
 
 # Function to create a new user
 def create_user(db: Session, user: UserCreate):
@@ -41,51 +47,7 @@ def create_user(db: Session, user: UserCreate):
         db.refresh(db_user)
     except Exception as e:
         db.rollback()
+        logging.error(f"Error creating user: {str(e)}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
     return db_user
-
-# Function to retrieve all users
-def get_users(db: Session):
-    """Retrieve a list of all users."""
-    return db.query(User).all()
-
-# Function to retrieve a user by user ID
-def get_user_by_id(db: Session, user_id: int):
-    """Retrieve a user by their unique ID."""
-    return db.query(User).filter(User.id == user_id).first()
-
-# Function to update a user's information
-def update_user(db: Session, user_id: int, user_update: UserUpdate):
-    """Update a user's information."""
-    db_user = get_user_by_id(db, user_id)
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    # Update username and optionally the password
-    db_user.username = user_update.username
-    if user_update.password:  # Hash the password only if it's provided
-        db_user.hashed_password = hash_password(user_update.password)
-
-    try:
-        db.commit()
-        db.refresh(db_user)
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail="Internal Server Error")
-
-    return db_user
-
-# Function to delete a user by ID
-def delete_user(db: Session, user_id: int):
-    """Delete a user by their ID."""
-    db_user = get_user_by_id(db, user_id)
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    db.delete(db_user)
-    try:
-        db.commit()
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail="Internal Server Error")

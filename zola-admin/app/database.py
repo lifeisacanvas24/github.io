@@ -1,3 +1,4 @@
+# app/database.py
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
@@ -11,14 +12,11 @@ SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"  # Correct format for SQLite
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base class for models
+# Base class for declarative models
 Base = declarative_base()
 
-def get_db() -> Session:
-    """
-    Dependency that provides a database session for use in FastAPI routes.
-    Yields a session and ensures it's closed after use.
-    """
+# Dependency to get DB session
+def get_db():
     db = SessionLocal()
     try:
         yield db
@@ -32,7 +30,6 @@ def init_db():
     """
     Base.metadata.create_all(bind=engine)
 
-# Example model definition
 class User(Base):
     __tablename__ = "users"
 
@@ -40,4 +37,17 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
 
+    def set_password(self, password: str):
+        self.hashed_password = pwd_context.hash(password)
+
+    def verify_password(self, password: str) -> bool:
+        return pwd_context.verify(password, self.hashed_password)
+
 # Add additional models as needed
+class AnotherModel(Base):
+    __tablename__ = "another_table"
+
+    id = Column(Integer, primary_key=True, index=True)
+    some_field = Column(String)
+
+# You can define more models here as required

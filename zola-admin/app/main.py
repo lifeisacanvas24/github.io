@@ -14,20 +14,19 @@ from contextlib import asynccontextmanager
 from starlette.middleware.base import BaseHTTPMiddleware
 import logging
 
+# Logging configuration
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
-# Example async context manager for lifespan
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()  # Initialize the database connection or other startup tasks
+    init_db()  # Initialize database connection or other startup tasks
     yield  # This is where the app runs
-    # Cleanup can be done here if necessary
 
-# Async context manager for database session
 @asynccontextmanager
 async def get_db_session():
-    db = next(get_db())
+    """Session generator for database interactions"""
+    db = next(get_db())  # Use the get_db() dependency for getting the session
     try:
         yield db
     finally:
@@ -35,37 +34,30 @@ async def get_db_session():
 
 app = FastAPI(lifespan=lifespan)
 
+# Include routers
 app.include_router(admin_router.router, prefix="/admin", tags=["admin"])
-app.include_router(user_router.router, prefix="/admin", tags=["users"])
+app.include_router(user_router.router, prefix="/users", tags=["users"])
 
-# Middleware to add user information to the request
 class AddUserMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         async with get_db_session() as db:
-            try:
-                user_id = get_user_id_from_cookie(request.cookies.get("user_id"))
-                if user_id:
-                    request.state.user = await get_current_user(db=db, user_id=user_id)
-                    logging.info(f"User ID retrieved from cookie: {user_id}")
-                    if request.state.user:
-                        logging.info(f"User retrieved: {request.state.user.username}")
-                else:
+            user_id = get_user_id_from_cookie(request.cookies.get("user_id"))
+            if user_id:
+                try:
+                    request.state.user = await get_current_user(db=db, user_id=user_id)  # Use await here
+                    logging.info(f"User retrieved: {request.state.user.username}")
+                except HTTPException as e:
+                    logging.error(f"HTTPException in middleware: {e.detail}")
                     request.state.user = None
-            except HTTPException as e:
-                logging.error(f"HTTPException in middleware: {e.detail}")
-                request.state.user = None
-            except Exception as e:
-                logging.error(f"Error in middleware: {e}")
+            else:
+                logging.warning("No user_id cookie found.")
                 request.state.user = None
 
         response = await call_next(request)
         return response
 
-# Add middleware to the app
 app.add_middleware(AddUserMiddleware)
-
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-
 templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/")
@@ -76,7 +68,7 @@ async def read_root():
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "user": request.state.user})
 
-@app.post("/login/")
+@app.post("/login/", response_model=None)
 async def login(request: Request, username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
     user = authenticate_user(username, password, db)
     if not user:
@@ -85,33 +77,30 @@ async def login(request: Request, username: str = Form(...), password: str = For
             "request": request, "error": "Invalid credentials, please try again."
         })
 
-    # Set the user in cookie and redirect to the dashboard
     response = RedirectResponse(url="/dashboard/", status_code=302)
     response.set_cookie(key="user_id", value=str(user.id), httponly=True, secure=False, samesite="Lax")
     return response
 
-@app.get("/dashboard/")
+@app.get("/dashboard/", response_model=None)
 async def dashboard(request: Request):
     if not request.state.user:
         return RedirectResponse(url="/admin/")
 
-    # Log current user info
     logging.info(f"Current user: {request.state.user.username}")
-
     return templates.TemplateResponse("dashboard.html", {
         "request": request,
-        "user": request.state.user  # Pass user context
+        "user": request.state.user
     })
 
-@app.get("/logout/")
+@app.get("/logout/", response_model=None)
 async def logout():
     response = RedirectResponse(url="/logout-confirmation/")
-    response.delete_cookie("user_id")  # Remove the user_id cookie
+    response.delete_cookie("user_id")
     return response
 
 @app.get("/logout-confirmation/", response_class=HTMLResponse)
 async def logout_confirmation(request: Request):
     return templates.TemplateResponse("logout_confirmation.html", {
         "request": request,
-        "user": request.state.user  # Pass the user object to the template
+        "user": request.state.user
     })

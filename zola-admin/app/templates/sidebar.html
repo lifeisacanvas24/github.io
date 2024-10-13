@@ -1,13 +1,19 @@
 <!-- templates/sidebar.html -->
 {% if user %}
 <aside class="menu">
-    <p class="menu-label">Manage Users</p>
+    <span class="icon"><i class="fas fa-tags"></i></span>Manage Users
     <ul class="menu-list">
         <li><a href="/admin/users/create-user"><span class="icon"><i class="fas fa-user-plus"></i></span> Create User</a></li>
         <li><a href="/admin/users/list"><span class="icon"><i class="fas fa-list"></i></span> List Users</a></li>
     </ul>
 
-    <p class="menu-label">Manage Blog</p>
+    <span class="icon"><i class="fas fa-tags"></i></span>Manage Blog
+    <ul class="menu-list">
+        <li><a href="/admin/blog/posts/add"><span class="icon"><i class="fas fa-plus"></i></span> Add A Blog Post</a></li>
+        <li><a href="/admin/blog/posts/list"><span class="icon"><i class="fas fa-list"></i></span> List Posts</a></li>
+        <li><a href="/admin/blog/posts/modify"><span class="icon"><i class="fas fa-edit"></i></span> Modify Post</a></li>
+        <li><a href="/admin/blog/posts/delete"><span class="icon"><i class="fas fa-trash-alt"></i></span> Delete Post</a></li>
+    </ul>
     <ul class="menu-list">
         <li>
             <a href="#"><span class="icon"><i class="fas fa-tags"></i></span> Manage Categories</a>
@@ -47,12 +53,5 @@
         </li>
     </ul>
 
-    <p class="menu-label">Add a Blog Post</p>
-    <ul class="menu-list">
-        <li><a href="/admin/blog/posts/add"><span class="icon"><i class="fas fa-plus"></i></span> Add Post</a></li>
-        <li><a href="/admin/blog/posts/list"><span class="icon"><i class="fas fa-list"></i></span> List Posts</a></li>
-        <li><a href="/admin/blog/posts/modify"><span class="icon"><i class="fas fa-edit"></i></span> Modify Post</a></li>
-        <li><a href="/admin/blog/posts/delete"><span class="icon"><i class="fas fa-trash-alt"></i></span> Delete Post</a></li>
-    </ul>
 </aside>
 {% endif %}
