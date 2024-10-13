@@ -1,8 +1,7 @@
 # app/crud.py
 from sqlalchemy.orm import Session
-from fastapi import HTTPException, Request  # Import Request from FastAPI
-from app.models import User
-from app.schemas import UserCreate  # Ensure this is the updated version without email
+from fastapi import HTTPException, Request
+from app.models import User, UserCreate  # Import UserCreate from models
 from app.utils import hash_password
 import logging
 
@@ -12,21 +11,6 @@ def get_user(db: Session, username: str):
     user = db.query(User).filter(User.username == username).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    return user
-
-# Function to get the user from the session token
-async def get_user_from_token(request: Request):
-    """Retrieve user from the session token."""
-    token = request.cookies.get("session_token")
-    # Logic to fetch the user from the token or session
-    # This should return a User object
-    if not token:
-        raise HTTPException(status_code=401, detail="Unauthorized")
-
-    user = await get_user_by_token(token)  # Implement this function to return a User object
-    if user is None:
-        raise HTTPException(status_code=401, detail="User not found")
-
     return user
 
 # Function to create a new user

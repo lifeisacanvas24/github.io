@@ -1,3 +1,4 @@
+# app/routers/admin.py
 from fastapi import APIRouter, Depends, Request, Form, HTTPException
 from fastapi.responses import RedirectResponse, HTMLResponse
 from sqlalchemy.orm import Session
@@ -24,4 +25,4 @@ async def create_user_route(
         logging.error(f"Error creating user: {str(e)}")
         raise HTTPException(status_code=400, detail="User creation failed.")
 
-        return RedirectResponse(url="/admin/", status_code=302)
+    return RedirectResponse(url="/admin/", status_code=302)

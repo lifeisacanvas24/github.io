@@ -1,34 +1,55 @@
 # app/models.py
-
-from sqlalchemy import Column, Integer, String
+from pydantic import BaseModel
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from pydantic import BaseModel, constr
-from app.utils import hash_password
+from sqlalchemy.orm import sessionmaker, Session
+import os
+from passlib.context import CryptContext
 
-Base = declarative_base()  # Ensure this is created once
+# Set up password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# SQLAlchemy User model
+# Define the path for the database file
+db_path = os.path.join(os.path.dirname(__file__), 'zola_admin.db')
+SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"  # Correct format for SQLite
+
+# Create engine and session local
+engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Base class for declarative models
+Base = declarative_base()
+
+# Pydantic schemas
+class UserCreate(BaseModel):
+    username: str
+    password: str
+
+class UserResponse(BaseModel):
+    id: int
+    username: str
+
+    class Config:
+        from_attributes = True # Enable ORM mode to convert SQLAlchemy models to Pydantic models
+
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String(150), unique=True, index=True, nullable=False)
-    hashed_password = Column(String(255), nullable=False)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
 
-# Pydantic models for user creation and response
-class UserBase(BaseModel):
-    username: str
+    def set_password(self, password: str):
+        self.hashed_password = pwd_context.hash(password)
 
-class UserCreate(UserBase):
-    password: constr(min_length=6)  # Minimum length for passwords
+    def verify_password(self, password: str) -> bool:
+        return pwd_context.verify(password, self.hashed_password)
 
-class UserResponse(UserBase):
-    id: int
+# Add additional models as needed
+class AnotherModel(Base):
+    __tablename__ = "another_table"
 
-    class Config:
-        orm_mode = True  # Enable compatibility with ORM objects
+    id = Column(Integer, primary_key=True, index=True)
+    some_field = Column(String)
 
-# Function to hash the password and create a new User object
-def create_user_hashed(user: UserCreate):
-    """Hash the password for a new user."""
-    return User(username=user.username, hashed_password=hash_password(user.password))
+# You can define more models here as required

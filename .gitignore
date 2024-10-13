@@ -1,6 +1,19 @@
 # Ignore the Zola build output folder
 working-rough-css-lifeisacanvas/
 
+
+#Ignore the venv environment related
+bin/
+include/
+lib/
+lib64/
+pyenv.cfg
+
+## Ignore Db files
+admin_app.db
+test.db
+
+
 # Ignore temporary files created by editors or OS
 *.swp
 *.swo

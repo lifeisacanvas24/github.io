@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
+from passlib.context import CryptContext
 
 # Define the path for the database file
 db_path = os.path.join(os.path.dirname(__file__), 'zola_admin.db')
@@ -14,6 +15,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base class for declarative models
 Base = declarative_base()
+
+# Password context for hashing
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Dependency to get DB session
 def get_db():
@@ -49,5 +53,3 @@ class AnotherModel(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     some_field = Column(String)
-
-# You can define more models here as required

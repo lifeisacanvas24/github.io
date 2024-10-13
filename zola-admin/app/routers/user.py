@@ -3,10 +3,10 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from app import crud, schemas
+from app import crud
 from app.database import get_db
 from app.dependencies import get_current_user
-from app.models import User
+from app.models import User, UserCreate, UserResponse  # Import UserResponse
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
@@ -23,11 +23,11 @@ def create_user_page(request: Request):
 
 @router.post("/users/create-user")
 def create_user(username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
-    user_data = schemas.UserCreate(username=username, password=password)
+    user_data = UserCreate(username=username, password=password)
     new_user = crud.create_user(db, user_data)
     return RedirectResponse(url="/users/list?success=User%20created%20successfully", status_code=303)
 
-@router.get("/users/{user_id}", response_model=schemas.User)
+@router.get("/users/{user_id}", response_model=UserResponse)  # Use UserResponse here
 def read_user(user_id: int, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_id(db, user_id)
     if not db_user:
