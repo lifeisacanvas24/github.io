@@ -21,11 +21,11 @@ additional_meta_tags = [
 [json_ld]
 type = "WebPage"
 context = "https://schema.org"
-itemprop = {
-    name = "Comprehensive GitHub Workflow Guide"
-    description = "This guide provides detailed information on setting up and managing GitHub repositories, including best practices."
-    url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/"
-}
+itemprop = [
+    { name = "Comprehensive GitHub Workflow Guide"},
+    { description = "This guide provides detailed information on setting up and managing GitHub repositories, including best practices." },
+    { url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/" }
+]
 +++
 
 # Comprehensive GitHub Workflow Guide
@@ -617,4 +617,3 @@ After committing from an existing folder, manage future changes by:
 This guide provides a comprehensive overview of GitHub workflows, including essential commands, best practices, and advanced techniques. Regularly updating your knowledge of Git and GitHub will enhance your development workflow, enabling effective collaboration and version control.
 
 Feel free to refer back to this guide as needed, and happy coding!
-
