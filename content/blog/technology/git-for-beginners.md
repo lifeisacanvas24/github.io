@@ -1,3 +1,33 @@
++++
+title = "Comprehensive GitHub Workflow Guide"
+description = "A detailed guide covering essential GitHub workflows, including repository setup, SSH access, and best practices."
+keywords = ["GitHub", "workflow", "Git", "version control", "repository"]
+date = 2024-10-12
+draft = false
+
+[extra]
+og_title = "Comprehensive GitHub Workflow Guide"
+og_description = "Learn how to set up and manage GitHub repositories effectively with this comprehensive guide."
+og_image = "path/to/image.jpg"
+og_url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/"
+og_type = "article"
+
+[custom]
+additional_meta_tags = [
+    { name = "author", content = "Lifeisacanvas" },
+    { name = "viewport", content = "width=device-width, initial-scale=1" }
+]
+
+[json_ld]
+type = "WebPage"
+context = "https://schema.org"
+itemprop = {
+    name = "Comprehensive GitHub Workflow Guide"
+    description = "This guide provides detailed information on setting up and managing GitHub repositories, including best practices."
+    url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/"
+}
++++
+
 # Comprehensive GitHub Workflow Guide
 
 ## Table of Contents
