@@ -1,9 +1,0 @@
-/* Add this to your styles.css or similar CSS file */
-aside.menu {
-    padding-left: 20px;  /* Adjust this value to increase/decrease spacing */
-}
-
-.menu-label {
-    margin-top: 1.5rem;  /* Adjust spacing between labels */
-    font-weight: bold;    /* Make labels stand out */
-}
