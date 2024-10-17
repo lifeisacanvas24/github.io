@@ -52,10 +52,11 @@ highlight_code = true
 paginate_by = 10  # Number of posts per page
 blog_sections_path = [
  "blog/_index.md",
- "blog/lifestyle/_index.md",
  "blog/reviews/_index.md",
  "blog/technology/_index.md",
  "blog/random-thoughts/_index.md",
+ "blog/stock-market/_index.md",
+ "blog/lifestyle/_index.md",
  "blog/lifestyle/parenting/_index.md",
  "blog/lifestyle/yoga/_index.md",
  "blog/lifestyle/minimalism/_index.md",
