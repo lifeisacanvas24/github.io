@@ -3,7 +3,7 @@ title = "Comprehensive GitHub Workflow Guide"
 description = "A detailed guide on setting up and managing GitHub repositories, including best practices."
 date = "2024-10-17"
 draft = false
-updated = "2024-10-17T21:32:08.309701"
+updated = "2024-10-17T21:34:41.047250"
 reading_time = "N/A"
 social_image = ""
 tags = ["git", "beginners", "guide"]
@@ -131,7 +131,7 @@ git commit -m "Implement new feature"</code></pre></div></li><li><p>Pushing to G
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "name": "Comprehensive GitHub Workflow Guide",
-  "description": "This guide provides detailed information on setting up and managing GitHub repositories, including best practices.",
+  "description": "A detailed guide on setting up and managing GitHub repositories, including best practices",
   "url": "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/",
   "author": "Lifeisacanvas24",
   "datePublished": "2024-10-17"
