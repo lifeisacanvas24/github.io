@@ -1,9 +1,9 @@
 +++
 title = "Comprehensive GitHub Workflow Guide"
 description = "A detailed guide on setting up and managing GitHub repositories, including best practices."
-date = "2024-10-18T16:20:19.352705"
+date = "2024-10-18T16:20:22.200504"
 draft = false
-updated = "2024-10-18T16:20:19.353111"
+updated = "2024-10-18T16:20:22.200545"
 reading_time = "N/A"
 social_image = ""
 tags = [""]
