@@ -7,11 +7,11 @@ Zola CMS ([https://www.getzola.org/](https://www.getzola.org/)) for Styling Bulm
 - [ ] Clean up the overall look for the website to make it more slick
 - [ ] Make sure all the Meta Data, Open Graph Metadata, JSON-LD Metadata to be ingested into all the pages properly.
 - [ ] Things to incorporate in Zola CMS using FastAPI \+ Sqlite app being built
-      - [ ] Comments for each Posts / Pages (As required) with admin moderation.
-      - [ ] Social Media Links to share the posts
-      - [ ] Build a way for it to pull comments using a javascript snippet
-      - [ ] Rating for the Posts
-      - [ ] Shopping Cart implementation.
+    - [ ] Comments for each Posts / Pages (As required) with admin moderation.
+    - [ ] Social Media Links to share the posts
+    - [ ] Build a way for it to pull comments using a javascript snippet
+    - [ ] Rating for the Posts
+    - [ ] Shopping Cart implementation.
 - [ ] Keep this list updated.
 
 
