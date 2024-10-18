@@ -1,19 +1,32 @@
 +++
 title = "Comprehensive GitHub Workflow Guide"
 description = "A detailed guide on setting up and managing GitHub repositories, including best practices."
+keywords = ["git", "beginners", "guide"]
 date = "2024-10-18"
 draft = false
-updated = "2024-10-18T19:06:45.676337"
-reading_time = "N/A"
-social_image = ""
-tags = ["git", "beginners", "guide"]
 
-[open_graph]
-title = ""
-description = ""
-image = ""
-url = ""
-type = "article"
+[extra]
+og_title = "Comprehensive GitHub Workflow Guide"
+og_description = "A detailed guide on setting up and managing GitHub repositories, including best practices."
+og_image = ""
+og_url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/"
+og_type = "article"
+
+[custom]
+additional_meta_tags = [
+    { name = "author", content = "Lifeisacanvas24" },
+    { name = "viewport", content = "width=device-width, initial-scale=1" }
+]
+
+[json_ld]
+type = "WebPage"
+context = "https://schema.org"
+itemprop = [
+    { name = "Comprehensive GitHub Workflow Guide" },
+    { description = "A detailed guide on setting up and managing GitHub repositories, including best practices." },
+    { url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/" }
+]
++++
 
 
 # Comprehensive GitHub Workflow Guide
