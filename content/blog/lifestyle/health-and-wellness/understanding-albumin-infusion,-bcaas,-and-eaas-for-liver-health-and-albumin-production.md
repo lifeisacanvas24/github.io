@@ -2,8 +2,9 @@
     title = "Understanding Albumin Infusion, BCAAs, and EAAs for Liver Health and Albumin Production"
     description = "Explore the significance of albumin infusions, the role of BCAAs and EAAs in liver health, and natural alternatives to support heart health and lower blood pressure"
     date = "2024-10-20"
+    author = "[Lifeisacanvas24]"
     draft = false
-    updated = "2024-10-20T12:30:15.948756"
+    updated = "2024-10-20T12:33:50.611281"
     reading_time = "N/A"
     social_image = ""
     tags = ["Albumin Infusion", "Liver Health", "BCAAs", "EAAs", "Protein Supplements", "Heart Health", "Natural Supplements", "Omega-3", "Hawthorn Berry", "Magnesium", "Coenzyme Q10", "Garlic", "L-Arginine", "Potassium"]
