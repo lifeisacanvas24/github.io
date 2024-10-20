@@ -13,12 +13,17 @@ og_image = ""
 og_url = "http://lifeisacanvas24.github.io/blog/lifestyle/health-and-wellness/understanding-albumin-infusion,-bcaas,-and-eaas-for-liver-health-and-albumin-production/"
 og_type = "blog"
 
-[json_ld]
-name = "Understanding Albumin Infusion, BCAAs, and EAAs for Liver Health and Albumin Production"
-description = "Explore the significance of albumin infusions, the role of BCAAs and EAAs in liver health, and natural alternatives to support heart health and lower blood pressure"
-url = "http://lifeisacanvas24.github.io/blog/lifestyle/health-and-wellness/understanding-albumin-infusion,-bcaas,-and-eaas-for-liver-health-and-albumin-production/"
-+++
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Understanding Albumin Infusion, BCAAs, and EAAs for Liver Health and Albumin Production",
+  "description": "Explore the significance of albumin infusions, the role of BCAAs and EAAs in liver health, and natural alternatives to support heart health and lower blood pressure",
+  "url": "http://lifeisacanvas24.github.io/blog/lifestyle/health-and-wellness/understanding-albumin-infusion,-bcaas,-and-eaas-for-liver-health-and-albumin-production/",
+  "author": "Lifeisacanvas24",
+  "datePublished": "2024-10-20"
+}
+</script>
 # Understanding Albumin Infusion, BCAAs, and EAAs for Liver Health and Albumin Production
 
 ## 1. What is an Albumin Infusion and How is it Done?
