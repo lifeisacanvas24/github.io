@@ -2,9 +2,9 @@
     title = "Comprehensive GitHub Workflow Guide"
     description = "A complete guide to setting up repositories, managing branches, handling pull requests, resolving conflicts, using Git stash, rebase, and advanced GitHub techniques. Learn best practices for a smooth GitHub workflow"
     date = "2024-10-21"
-    author = "[[lifeisacanvas24]]"
+    author = "[lifeisacanvas24]"
     draft = false
-    updated = "2024-10-22T10:25:27.100179"
+    updated = "2024-10-22T12:36:10.886427"
     reading_time = "N/A"
     social_image = ""
     tags = ["git", "beginners", "guide"]
@@ -21,10 +21,10 @@
     type = "BlogPosting"
     context = "https://schema.org"
     itemprop = [
-        { name = "" },
-        { description = "" },
-        { url = "" },
-        { author = "[lifeisacanvas24]" },
+        { name = "Comprehensive GitHub Workflow Guide" },
+        { description = "A complete guide to setting up repositories, managing branches, handling pull requests, resolving conflicts, using Git stash, rebase, and advanced GitHub techniques. Learn best practices for a smooth GitHub workflow" },
+        { url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/" },
+        { author = "lifeisacanvas24" },
         { datePublished = "2024-10-21" }
     ]
     +++
@@ -47,11 +47,11 @@
 ## 1. Setting up a repository on GitHub
 
 1. Log in to your GitHub account
-2. Click the "+" icon in the top right corner and select "New repository"
+2. Click the &quot;+&quot; icon in the top right corner and select &quot;New repository&quot;
 3. Fill in the repository name and description
 4. Choose public or private
-5. Select "Initialize this repository with a README"
-6. Click "Create repository"
+5. Select &quot;Initialize this repository with a README&quot;
+6. Click &quot;Create repository&quot;
 
 ## 2. Setting up SSH access
 
@@ -62,16 +62,16 @@
 
 2. Generate a new SSH key (if needed):
    ```bash
-   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
    ```
    or for custom keyname you could use
    ```bash
-   ssh-keygen -t ed25519 -C "agriyain2k@gmail.com" -f ~/.ssh/<keyname>
+   ssh-keygen -t ed25519 -C &quot;agriyain2k@gmail.com&quot; -f ~/.ssh/&lt;keyname&gt;
    ```
 
 3. Start the SSH agent:
    ```bash
-   eval "$(ssh-agent -s)"
+   eval &quot;$(ssh-agent -s)&quot;
    ```
 
 4. Add your SSH key to the agent:
@@ -80,7 +80,7 @@
    ```
    or for custom keyname you could use
    ```bash
-   ssh-add ~/.ssh/<keyname>
+   ssh-add ~/.ssh/&lt;keyname&gt;
    ```
 
 5. Copy the SSH public key:
@@ -89,11 +89,11 @@
    ```
    or for custom keyname you could use
    ```bash
-   cat ~/.ssh/<keyname>.pub
+   cat ~/.ssh/&lt;keyname&gt;.pub
    ```
 
 6. Add the SSH key to your GitHub account:
-   - Go to GitHub Settings > SSH and GPG keys > New SSH key
+   - Go to GitHub Settings &gt; SSH and GPG keys &gt; New SSH key
    - Paste your key and save
 
 7. Test your SSH connection:
@@ -126,7 +126,7 @@
    ```bash
    # Make your changes
    git add .
-   git commit -m "Your commit message"
+   git commit -m &quot;Your commit message&quot;
    ```
 
 3. Push changes to a specific branch:
@@ -138,26 +138,26 @@
 
 1. Create a pull request:
    - Go to your repository on GitHub
-   - Click "Pull requests" tab > "New pull request"
+   - Click &quot;Pull requests&quot; tab &gt; &quot;New pull request&quot;
    - Select the base and compare branches
    - Add a title and description
-   - Click "Create pull request"
+   - Click &quot;Create pull request&quot;
 
 2. Merge a pull request:
    - Review the changes
-   - Click "Merge pull request" if everything looks good
-   - Click "Confirm merge"
+   - Click &quot;Merge pull request&quot; if everything looks good
+   - Click &quot;Confirm merge&quot;
 
 ## 6. Managing conflicts and diffs
 
 1. Resolve conflicts:
-   - If GitHub indicates conflicts, click "Resolve conflicts"
+   - If GitHub indicates conflicts, click &quot;Resolve conflicts&quot;
    - Edit the file(s) to resolve conflicts manually
    - Mark the conflicts as resolved
    - Commit the changes
 
 2. View diffs:
-   - In a pull request, go to the "Files changed" tab
+   - In a pull request, go to the &quot;Files changed&quot; tab
    - Or locally:
      ```bash
      git diff branch1..branch2
@@ -217,11 +217,11 @@ git checkout -b feature/new-feature-name
 ### 9.3 Keep commits atomic and write meaningful commit messages
 
 ```bash
-git commit -m "Add user authentication feature
+git commit -m &quot;Add user authentication feature
 
 - Implement login functionality
 - Add password hashing
-- Create user session management"
+- Create user session management&quot;
 ```
 
 ### 9.4 Regularly merge master into your feature branch
@@ -268,15 +268,15 @@ git checkout -b refactor/optimize-database-queries
 
 ```bash
 git add file1.js file2.js
-git commit -m "Add initial structure for user profile"
+git commit -m &quot;Add initial structure for user profile&quot;
 git add file3.js
-git commit -m "Implement profile picture upload"
+git commit -m &quot;Implement profile picture upload&quot;
 ```
 
 ### 9.9 Use git stash for temporary changes
 
 ```bash
-git stash save "WIP: Experimenting with new feature"
+git stash save &quot;WIP: Experimenting with new feature&quot;
 git stash list
 git stash apply stash@{0}
 git stash drop stash@{0}
@@ -310,17 +310,17 @@ git rebase master
    # Ignore all files in a directory
    temp/*
 
-   # But don&amp;#x27;t ignore this specific file
+   # But don&amp;amp;#x27;t ignore this specific file
    !temp/important.txt
    ```
 
 3. Commit the `.gitignore` file:
    ```bash
    git add .gitignore
-   git commit -m "Add .gitignore file"
+   git commit -m &quot;Add .gitignore file&quot;
    ```
 
-4. If you&amp;#x27;ve already committed files that you now want to ignore:
+4. If you&amp;amp;#x27;ve already committed files that you now want to ignore:
    ```bash
    git rm --cached filename
    ```
@@ -371,7 +371,7 @@ git blame filename
 ```bash
 git bisect start
 git bisect bad  # Current version is bad
-git bisect good <commit-hash>  # Last known good version
+git bisect good &lt;commit-hash&gt;  # Last known good version
 # Git will checkout different commits
 # Test and mark as good or bad until the first bad commit is found
 git bisect good
@@ -388,7 +388,7 @@ Git stash is a powerful feature that allows you to temporarily store modified, t
 
 #### Use Cases for Git Stash:
 
-1. When you need to quickly switch branches but aren&amp;#x27;t ready to commit your current work.
+1. When you need to quickly switch branches but aren&amp;amp;#x27;t ready to commit your current work.
 2. When you want to apply a stash to multiple branches.
 3. When you need to put aside some experimental changes.
 
@@ -396,7 +396,7 @@ Git stash is a powerful feature that allows you to temporarily store modified, t
 
 1. Stash your changes:
    ```bash
-   git stash save "Your stash message"
+   git stash save &quot;Your stash message&quot;
    ```
 
 2. List all stashes:
@@ -432,16 +432,16 @@ Git stash is a powerful feature that allows you to temporarily store modified, t
 #### Example Workflow:
 
 ```bash
-# You&amp;#x27;re working on a feature
+# You&amp;amp;#x27;re working on a feature
 git checkout feature-branch
 # Make some changes...
 
 # Suddenly, you need to fix a bug on master
-git stash save "WIP: Feature XYZ"
+git stash save &quot;WIP: Feature XYZ&quot;
 git checkout master
 
 # Fix the bug
-git commit -am "Fix critical bug"
+git commit -am &quot;Fix critical bug&quot;
 
 # Go back to your feature
 git checkout feature-branch
@@ -452,7 +452,7 @@ git stash pop
 
 ### 10.2 Git Rebase
 
-Git rebase is a way to integrate changes from one branch into another. It&amp;#x27;s an alternative to merging that can result in a cleaner, more linear project history.
+Git rebase is a way to integrate changes from one branch into another. It&amp;amp;#x27;s an alternative to merging that can result in a cleaner, more linear project history.
 
 #### Use Cases for Git Rebase:
 
@@ -511,24 +511,24 @@ git push --force-with-lease origin feature-branch
 ```bash
 git rebase -i HEAD~3
 
-# In the interactive editor, you&amp;#x27;ll see something like:
+# In the interactive editor, you&amp;amp;#x27;ll see something like:
 # pick f7f3f6d Change A
 # pick 310154e Change B
 # pick a5f4a0d Change C
 
 # You can reorder these lines to reorder commits
-# Change &amp;#x27;pick&amp;#x27; to:
-# &amp;#x27;r&amp;#x27; or &amp;#x27;reword&amp;#x27; to change the commit message
-# &amp;#x27;s&amp;#x27; or &amp;#x27;squash&amp;#x27; to combine the commit with the previous one
-# &amp;#x27;f&amp;#x27; or &amp;#x27;fixup&amp;#x27; to combine the commit with the previous one and discard this commit&amp;#x27;s message
-# &amp;#x27;d&amp;#x27; or &amp;#x27;drop&amp;#x27; to remove the commit
+# Change &amp;amp;#x27;pick&amp;amp;#x27; to:
+# &amp;amp;#x27;r&amp;amp;#x27; or &amp;amp;#x27;reword&amp;amp;#x27; to change the commit message
+# &amp;amp;#x27;s&amp;amp;#x27; or &amp;amp;#x27;squash&amp;amp;#x27; to combine the commit with the previous one
+# &amp;amp;#x27;f&amp;amp;#x27; or &amp;amp;#x27;fixup&amp;amp;#x27; to combine the commit with the previous one and discard this commit&amp;amp;#x27;s message
+# &amp;amp;#x27;d&amp;amp;#x27; or &amp;amp;#x27;drop&amp;amp;#x27; to remove the commit
 ```
 
 ### Important Notes:
 
-1. Rebasing rewrites commit history. Never rebase commits that have been pushed to a public repository unless you&amp;#x27;re absolutely sure no one has based work on them.
+1. Rebasing rewrites commit history. Never rebase commits that have been pushed to a public repository unless you&amp;amp;#x27;re absolutely sure no one has based work on them.
 
-2. When using `git push --force-with-lease`, be cautious as it can overwrite remote changes. It&amp;#x27;s safer than `git push --force` as it checks if the remote branch has been updated.
+2. When using `git push --force-with-lease`, be cautious as it can overwrite remote changes. It&amp;amp;#x27;s safer than `git push --force` as it checks if the remote branch has been updated.
 
 3. Stashing is local to your machine. Stashes are not transferred to the remote repository when you push.
 
@@ -557,14 +557,14 @@ If you have an existing folder with files that you want to commit to a new or ex
 
 4. Commit your changes:
    ```bash
-   git commit -m "Initial commit of existing folder"
+   git commit -m &quot;Initial commit of existing folder&quot;
    ```
 
 ### 11.2 Linking to a Remote Repository
 
-1. Add the remote repository (replace `<username>` and `<repository>` with your actual GitHub username and repository name):
+1. Add the remote repository (replace `&lt;username&gt;` and `&lt;repository&gt;` with your actual GitHub username and repository name):
    ```bash
-   git remote add origin git@github.com:<username>/<repository>.git
+   git remote add origin git@github.com:&lt;username&gt;/&lt;repository&gt;.git
    ```
 
 2. Push your changes to GitHub:
@@ -576,9 +576,9 @@ If you have an existing folder with files that you want to commit to a new or ex
 
 If you have an existing GitHub repository and want to commit files from your local folder:
 
-1. Clone the repository to a local folder (optional, if you don&amp;#x27;t want to work directly in the existing folder):
+1. Clone the repository to a local folder (optional, if you don&amp;amp;#x27;t want to work directly in the existing folder):
    ```bash
-   git clone git@github.com:<username>/<repository>.git
+   git clone git@github.com:&lt;username&gt;/&lt;repository&gt;.git
    cd repository
    ```
 
@@ -587,7 +587,7 @@ If you have an existing GitHub repository and want to commit files from your loc
 3. Add, commit, and push your changes as shown above:
    ```bash
    git add .
-   git commit -m "Add files from existing folder"
+   git commit -m &quot;Add files from existing folder&quot;
    git push origin master
    ```
 
@@ -603,7 +603,7 @@ After committing from an existing folder, manage future changes by:
 2. Making changes, adding, and committing:
    ```bash
    git add .
-   git commit -m "Implement new feature"
+   git commit -m &quot;Implement new feature&quot;
    ```
 
 3. Pushing to GitHub:
