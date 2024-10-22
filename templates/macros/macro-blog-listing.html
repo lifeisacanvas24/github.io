@@ -9,21 +9,32 @@
     show_post_summary=false,
     show_breadcrumb=false
 ) %}
-    {# Initialize feed #}
+    {# Initialize feed and a list to track unique permalinks #}
     {% set_global feed = [] %}
+    {% set_global unique_permalinks = [] %}
 
     {# Process each section path and add posts to the feed #}
     {% for path in section_paths %}
         {% set section = get_section(path=path) %}
         {% if section.pages | length > 0 %}
-            {% set_global feed = feed | concat(with=section.pages) %}
+            {% for page in section.pages %}
+                {% if page.permalink not in unique_permalinks %}
+                    {% set_global unique_permalinks = unique_permalinks | concat(with=page.permalink) %}
+                    {% set_global feed = feed | concat(with=page) %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
 
         {# Include pages from subsections #}
         {% for sub_path in section.subsections %}
             {% set sub_section = get_section(path=sub_path) %}
             {% if sub_section.pages | length > 0 %}
-                {% set_global feed = feed | concat(with=sub_section.pages) %}
+                {% for page in sub_section.pages %}
+                    {% if page.permalink not in unique_permalinks %}
+                        {% set_global unique_permalinks = unique_permalinks | concat(with=page.permalink) %}
+                        {% set_global feed = feed | concat(with=page) %}
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         {% endfor %}
     {% endfor %}
@@ -81,10 +92,10 @@
                                     </a>
                                 </li>
 
-                                {% set_global accumulated_path = current_path %}
+                                {% set accumulated_path = current_path %}
                                 {% for component in page.components %}
                                     {% if component != "blog" and component != page.slug %}
-                                        {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
+                                        {% set accumulated_path = accumulated_path ~ "/" ~ component %}
                                         <li>
                                             <a href="{{ accumulated_path | lower }}">
                                                 <span class="icon is-small"><i class="fas fa-folder"></i></span>

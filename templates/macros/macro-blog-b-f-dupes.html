@@ -52,7 +52,7 @@
                         {# Show tags if enabled #}
                         {% if tags_display and page.taxonomies.tags %}
                             <div class="post-tags">
-                                Tags:
+                                <span>Tags:</span>
                                 {% for tag in page.taxonomies.tags %}
                                     {% if tag_link %}
                                         <span class="tag is-info">
@@ -65,37 +65,36 @@
                                             <i class="fas fa-tag"></i> {{ tag }}
                                         </span>
                                     {% endif %}
-                                    {% if not loop.last %} {% endif %}
                                 {% endfor %}
                             </div>
                         {% endif %}
 
                         {# Show breadcrumb using components (sections) #}
                         {% if show_breadcrumb %}
-                            <nav class="breadcrumb" aria-label="breadcrumbs">
-                                <ul>
-                                    {% set current_path = "/blog" %}
-                                    <li>
-                                        <a href="{{ current_path }}">
-                                            <span class="icon is-small"><i class="fas fa-folder"></i></span>
-                                            Blog
-                                        </a>
-                                    </li>
+                        <nav class="breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                {% set current_path = "/blog" %}
+                                <li>
+                                    <a href="{{ current_path }}">
+                                        <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                        Blog
+                                    </a>
+                                </li>
 
-                                    {% set_global accumulated_path = current_path %}
-                                    {% for component in page.components %}
-                                        {% if component != "blog" and component != page.slug %}
-                                            {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
-                                            <li>
-                                                <a href="{{ accumulated_path | lower }}">
-                                                    <span class="icon is-small"><i class="fas fa-folder"></i></span>
-                                                    {{ component | capitalize }}
-                                                </a>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </nav>
+                                {% set_global accumulated_path = current_path %}
+                                {% for component in page.components %}
+                                    {% if component != "blog" and component != page.slug %}
+                                        {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
+                                        <li>
+                                            <a href="{{ accumulated_path | lower }}">
+                                                <span class="icon is-small"><i class="fas fa-folder"></i></span>
+                                                {{ component | capitalize }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </nav>
                         {% endif %}
 
                         {# Show post summary if enabled #}

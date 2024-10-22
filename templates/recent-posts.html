@@ -3,10 +3,6 @@
 {# Call the macro to display recent posts directly #}
 
 {% block content %}
-
-
-
-
 <div class="recent-posts">
 
     {{ blog_listing::get_combined_posts(
@@ -20,7 +16,5 @@
         show_post_summary=false,
         show_breadcrumb=false
     ) }}
-
-
 </div>
 {% endblock %}
