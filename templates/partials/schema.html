@@ -1,0 +1,46 @@
+{# partials/schema.html #}
+{% if page and page.extra.schema %}
+<script type="application/ld+json">
+{
+    "@context": "{{ page.extra.schema.context }}",
+    "@type": "{{ page.extra.schema.type }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ current_url | safe }}"
+    },
+    "headline": "{{ page.title }}",
+    "description": "{{ page.description }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ page.extra.schema.author }}"
+    },
+    "datePublished": "{{ page.extra.schema.date_published }}",
+    {% if page.extra.updated %}
+    "dateModified": "{{ page.extra.updated }}",
+    {% endif %}
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ config.title }}"
+    }
+}
+</script>
+{% elif section %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ current_url | safe }}"
+    },
+    "headline": "{{ section.title }}",
+    {% if section.description %}
+    "description": "{{ section.description }}",
+    {% endif %}
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ config.title }}"
+    }
+}
+</script>
+{% endif %}

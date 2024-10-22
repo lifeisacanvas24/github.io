@@ -92,10 +92,10 @@
                                     </a>
                                 </li>
 
-                                {% set accumulated_path = current_path %}
+                                {% set_global accumulated_path = current_path %}
                                 {% for component in page.components %}
                                     {% if component != "blog" and component != page.slug %}
-                                        {% set accumulated_path = accumulated_path ~ "/" ~ component %}
+                                        {% set_global accumulated_path = accumulated_path ~ "/" ~ component %}
                                         <li>
                                             <a href="{{ accumulated_path | lower }}">
                                                 <span class="icon is-small"><i class="fas fa-folder"></i></span>
@@ -107,6 +107,7 @@
                             </ul>
                         </nav>
                         {% endif %}
+
 
                         {# Show post summary if enabled #}
                         {% if show_post_summary %}

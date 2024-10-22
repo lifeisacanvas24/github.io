@@ -1,81 +1,69 @@
-<nav class="navbar header-gradient" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="{{ config.base_url }}">
-            <img src="{{ get_url(path=config.extra.logo_url) }}" alt="Site Logo" style="max-height: 3rem;">        </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
+{# header.html #}
+<header class="navbar">
+  <div class="navbar-brand">
+    <a href="{{ config.base_url }}" class="navbar-item">
+      <img src="{{ get_url(path=config.extra.logo_url) }}" alt="{{ config.title }}" style="max-height: 3rem;">
+    </a>
+    <div class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="{{ config.base_url }}" class="navbar-item">
+        <span class="icon has-text-primary"></span>
+        <span>Home</span>
+      </a>
+      <a href="{{ config.base_url }}/who-we-are" class="navbar-item">
+        <span class="icon has-text-danger"></span>
+        <span>Who We Are</span>
+      </a>
+      <a href="{{ config.base_url }}/what-we-do" class="navbar-item">
+        <span class="icon has-text-info"></span>
+        <span>What We Do</span>
+      </a>
+      <a href="{{ config.base_url }}/blog" class="navbar-item">
+        <span class="icon has-text-success"></span>
+        <span>Blog</span>
+      </a>
+      <a href="{{ config.base_url }}/shop" class="navbar-item">
+        <span class="icon has-text-warning"></span>
+        <span>Shop</span>
+      </a>
+      <a href="{{ config.base_url }}/contact-us" class="navbar-item">
+        <span class="icon has-text-link"></span>
+        <span>Contact Us</span>
+      </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="{{ config.base_url }}">
-                <span class="icon-text">
-                    <span class="icon has-text-primary">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span>Home</span>
-                </span>
-            </a>
-            <a class="navbar-item" href="{{ config.base_url }}/who-we-are">
-                <span class="icon-text">
-                    <span class="icon has-text-danger">
-                        <i class="fas fa-users"></i>
-                    </span>
-                    <span>Who We Are</span>
-                </span>
-            </a>
-            <a class="navbar-item" href="{{ config.base_url }}/what-we-do">
-                <span class="icon-text">
-                    <span class="icon has-text-info">
-                        <i class="fas fa-briefcase"></i>
-                    </span>
-                    <span>What We Do</span>
-                </span>
-            </a>
-            <a class="navbar-item" href="{{ config.base_url }}/blog">
-                <span class="icon-text">
-                    <span class="icon has-text-success">
-                        <i class="fas fa-blog"></i>
-                    </span>
-                    <span>Blog</span>
-                </span>
-            </a>
-            <a class="navbar-item" href="{{ config.base_url }}/shop">
-                <span class="icon-text">
-                    <span class="icon has-text-warning">
-                        <i class="fas fa-shopping-cart"></i>
-                    </span>
-                    <span>Shop</span>
-                </span>
-            </a>
-            <a class="navbar-item" href="{{ config.base_url }}/contact-us">
-                <span class="icon-text">
-                    <span class="icon has-text-link">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                    <span>Contact Us</span>
-                </span>
-            </a>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          {% if config.extra.social_instagram %}
+          <a href="{{ config.extra.social_instagram }}" class="icon has-text-pink" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          {% endif %}
+          {% if config.extra.social_youtube %}
+          <a href="{{ config.extra.social_youtube }}" class="icon has-text-danger" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          {% endif %}
+          {% if config.extra.social_twitter %}
+          <a href="{{ config.extra.social_twitter }}" class="icon has-text-info" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          {% endif %}
+          {% if config.extra.social_facebook %}
+          <a href="{{ config.extra.social_facebook }}" class="icon has-text-blue" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          {% endif %}
         </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <a href="{{ config.extra.social_instagram }}" class="icon has-text-pink">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="{{ config.extra.social_youtube }}" class="icon has-text-danger">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="{{ config.extra.social_twitter }}" class="icon has-text-info">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="{{ config.extra.social_facebook }}" class="icon has-text-blue">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            </div>
-        </div>
+      </div>
     </div>
-</nav>
+  </div>
+</header>

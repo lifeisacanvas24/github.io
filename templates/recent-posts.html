@@ -3,18 +3,18 @@
 {# Call the macro to display recent posts directly #}
 
 {% block content %}
-<div class="recent-posts">
 
-    {{ blog_listing::get_combined_posts(
-        section_paths=config.extra.blog_sections_path,
-        published_date=false,
-        updated_date=false,
-        tags_display=false,
-        tag_link=false,
-        no_of_posts=10,
-        section_name="left-column",
-        show_post_summary=false,
-        show_breadcrumb=false
-    ) }}
+<div class="recent-posts">
+  <h3 class="title is-3">Recent Posts</h3>
+  {{ blog_listing::get_combined_posts(section_paths=config.extra.blog_sections_path,
+  published_date=false,
+  updated_date=false,
+  tags_display=false,
+  tag_link=false,
+  no_of_posts=10,
+  section_name="left-column",
+  show_post_summary=false,
+  show_breadcrumb=false
+) }}
 </div>
 {% endblock %}

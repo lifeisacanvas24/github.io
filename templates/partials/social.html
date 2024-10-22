@@ -1,0 +1,17 @@
+{# partials/social.html #}
+{% if page and page.extra.og %}
+    <meta property="og:title" content="{{ page.extra.og.title }}">
+    <meta property="og:description" content="{{ page.extra.og.description }}">
+    <meta property="og:type" content="{{ page.extra.og.type | default(value="article") }}">
+    <meta property="og:url" content="{{ current_url | safe }}">
+    {% if page.extra.og.image %}
+    <meta property="og:image" content="{{ get_url(path=page.extra.og.image) }}">
+    {% endif %}
+{% elif section %}
+    <meta property="og:title" content="{{ section.title }}">
+    {% if section.description %}
+    <meta property="og:description" content="{{ section.description }}">
+    {% endif %}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ current_url | safe }}">
+{% endif %}
