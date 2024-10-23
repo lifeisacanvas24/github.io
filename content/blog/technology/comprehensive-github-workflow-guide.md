@@ -2,9 +2,9 @@
     title = "Comprehensive GitHub Workflow Guide"
     description = "A complete guide to setting up repositories, managing branches, handling pull requests, resolving conflicts, using Git stash, rebase, and advanced GitHub techniques. Learn best practices for a smooth GitHub workflow"
     date = "2024-10-21"
-    author = "[lifeisacanvas24]"
+    author = "[[lifeisacanvas24]]"
     draft = false
-    updated = "2024-10-22T12:36:10.886427"
+    updated = "2024-10-23T15:34:39.357749"
     reading_time = "N/A"
     social_image = ""
     tags = ["git", "beginners", "guide"]
@@ -15,7 +15,7 @@
     og_description = "A complete guide to setting up repositories, managing branches, handling pull requests, resolving conflicts, using Git stash, rebase, and advanced GitHub techniques. Learn best practices for a smooth GitHub workflow"
     og_image = ""
     og_url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/"
-    og_type = "article"
+    og_type = "post"
 
     [json_ld]
     type = "BlogPosting"
@@ -24,11 +24,11 @@
         { name = "Comprehensive GitHub Workflow Guide" },
         { description = "A complete guide to setting up repositories, managing branches, handling pull requests, resolving conflicts, using Git stash, rebase, and advanced GitHub techniques. Learn best practices for a smooth GitHub workflow" },
         { url = "http://lifeisacanvas24.github.io/blog/technology/comprehensive-github-workflow-guide/" },
-        { author = "lifeisacanvas24" },
+        { author = "[lifeisacanvas24]" },
         { datePublished = "2024-10-21" }
     ]
     +++
-    
+
 # Comprehensive GitHub Workflow Guide
 
 ## Table of Contents
@@ -47,11 +47,11 @@
 ## 1. Setting up a repository on GitHub
 
 1. Log in to your GitHub account
-2. Click the &quot;+&quot; icon in the top right corner and select &quot;New repository&quot;
+2. Click the "+" icon in the top right corner and select "New repository"
 3. Fill in the repository name and description
 4. Choose public or private
-5. Select &quot;Initialize this repository with a README&quot;
-6. Click &quot;Create repository&quot;
+5. Select "Initialize this repository with a README"
+6. Click "Create repository"
 
 ## 2. Setting up SSH access
 
@@ -62,16 +62,16 @@
 
 2. Generate a new SSH key (if needed):
    ```bash
-   ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
+   ssh-keygen -t ed25519 -C "your_email@example.com"
    ```
    or for custom keyname you could use
    ```bash
-   ssh-keygen -t ed25519 -C &quot;agriyain2k@gmail.com&quot; -f ~/.ssh/&lt;keyname&gt;
+   ssh-keygen -t ed25519 -C "agriyain2k@gmail.com" -f ~/.ssh/<keyname>
    ```
 
 3. Start the SSH agent:
    ```bash
-   eval &quot;$(ssh-agent -s)&quot;
+   eval "$(ssh-agent -s)"
    ```
 
 4. Add your SSH key to the agent:
@@ -80,7 +80,7 @@
    ```
    or for custom keyname you could use
    ```bash
-   ssh-add ~/.ssh/&lt;keyname&gt;
+   ssh-add ~/.ssh/<keyname>
    ```
 
 5. Copy the SSH public key:
@@ -89,11 +89,11 @@
    ```
    or for custom keyname you could use
    ```bash
-   cat ~/.ssh/&lt;keyname&gt;.pub
+   cat ~/.ssh/<keyname>.pub
    ```
 
 6. Add the SSH key to your GitHub account:
-   - Go to GitHub Settings &gt; SSH and GPG keys &gt; New SSH key
+   - Go to GitHub Settings > SSH and GPG keys > New SSH key
    - Paste your key and save
 
 7. Test your SSH connection:
@@ -126,7 +126,7 @@
    ```bash
    # Make your changes
    git add .
-   git commit -m &quot;Your commit message&quot;
+   git commit -m "Your commit message"
    ```
 
 3. Push changes to a specific branch:
@@ -138,26 +138,26 @@
 
 1. Create a pull request:
    - Go to your repository on GitHub
-   - Click &quot;Pull requests&quot; tab &gt; &quot;New pull request&quot;
+   - Click "Pull requests" tab > "New pull request"
    - Select the base and compare branches
    - Add a title and description
-   - Click &quot;Create pull request&quot;
+   - Click "Create pull request"
 
 2. Merge a pull request:
    - Review the changes
-   - Click &quot;Merge pull request&quot; if everything looks good
-   - Click &quot;Confirm merge&quot;
+   - Click "Merge pull request" if everything looks good
+   - Click "Confirm merge"
 
 ## 6. Managing conflicts and diffs
 
 1. Resolve conflicts:
-   - If GitHub indicates conflicts, click &quot;Resolve conflicts&quot;
+   - If GitHub indicates conflicts, click "Resolve conflicts"
    - Edit the file(s) to resolve conflicts manually
    - Mark the conflicts as resolved
    - Commit the changes
 
 2. View diffs:
-   - In a pull request, go to the &quot;Files changed&quot; tab
+   - In a pull request, go to the "Files changed" tab
    - Or locally:
      ```bash
      git diff branch1..branch2
@@ -217,11 +217,11 @@ git checkout -b feature/new-feature-name
 ### 9.3 Keep commits atomic and write meaningful commit messages
 
 ```bash
-git commit -m &quot;Add user authentication feature
+git commit -m "Add user authentication feature
 
 - Implement login functionality
 - Add password hashing
-- Create user session management&quot;
+- Create user session management"
 ```
 
 ### 9.4 Regularly merge master into your feature branch
@@ -268,15 +268,15 @@ git checkout -b refactor/optimize-database-queries
 
 ```bash
 git add file1.js file2.js
-git commit -m &quot;Add initial structure for user profile&quot;
+git commit -m "Add initial structure for user profile"
 git add file3.js
-git commit -m &quot;Implement profile picture upload&quot;
+git commit -m "Implement profile picture upload"
 ```
 
 ### 9.9 Use git stash for temporary changes
 
 ```bash
-git stash save &quot;WIP: Experimenting with new feature&quot;
+git stash save "WIP: Experimenting with new feature"
 git stash list
 git stash apply stash@{0}
 git stash drop stash@{0}
@@ -317,7 +317,7 @@ git rebase master
 3. Commit the `.gitignore` file:
    ```bash
    git add .gitignore
-   git commit -m &quot;Add .gitignore file&quot;
+   git commit -m "Add .gitignore file"
    ```
 
 4. If you&amp;amp;#x27;ve already committed files that you now want to ignore:
@@ -371,7 +371,7 @@ git blame filename
 ```bash
 git bisect start
 git bisect bad  # Current version is bad
-git bisect good &lt;commit-hash&gt;  # Last known good version
+git bisect good <commit-hash>  # Last known good version
 # Git will checkout different commits
 # Test and mark as good or bad until the first bad commit is found
 git bisect good
@@ -396,7 +396,7 @@ Git stash is a powerful feature that allows you to temporarily store modified, t
 
 1. Stash your changes:
    ```bash
-   git stash save &quot;Your stash message&quot;
+   git stash save "Your stash message"
    ```
 
 2. List all stashes:
@@ -437,11 +437,11 @@ git checkout feature-branch
 # Make some changes...
 
 # Suddenly, you need to fix a bug on master
-git stash save &quot;WIP: Feature XYZ&quot;
+git stash save "WIP: Feature XYZ"
 git checkout master
 
 # Fix the bug
-git commit -am &quot;Fix critical bug&quot;
+git commit -am "Fix critical bug"
 
 # Go back to your feature
 git checkout feature-branch
@@ -557,14 +557,14 @@ If you have an existing folder with files that you want to commit to a new or ex
 
 4. Commit your changes:
    ```bash
-   git commit -m &quot;Initial commit of existing folder&quot;
+   git commit -m "Initial commit of existing folder"
    ```
 
 ### 11.2 Linking to a Remote Repository
 
-1. Add the remote repository (replace `&lt;username&gt;` and `&lt;repository&gt;` with your actual GitHub username and repository name):
+1. Add the remote repository (replace `<username>` and `<repository>` with your actual GitHub username and repository name):
    ```bash
-   git remote add origin git@github.com:&lt;username&gt;/&lt;repository&gt;.git
+   git remote add origin git@github.com:<username>/<repository>.git
    ```
 
 2. Push your changes to GitHub:
@@ -578,7 +578,7 @@ If you have an existing GitHub repository and want to commit files from your loc
 
 1. Clone the repository to a local folder (optional, if you don&amp;amp;#x27;t want to work directly in the existing folder):
    ```bash
-   git clone git@github.com:&lt;username&gt;/&lt;repository&gt;.git
+   git clone git@github.com:<username>/<repository>.git
    cd repository
    ```
 
@@ -587,7 +587,7 @@ If you have an existing GitHub repository and want to commit files from your loc
 3. Add, commit, and push your changes as shown above:
    ```bash
    git add .
-   git commit -m &quot;Add files from existing folder&quot;
+   git commit -m "Add files from existing folder"
    git push origin master
    ```
 
@@ -603,7 +603,7 @@ After committing from an existing folder, manage future changes by:
 2. Making changes, adding, and committing:
    ```bash
    git add .
-   git commit -m &quot;Implement new feature&quot;
+   git commit -m "Implement new feature"
    ```
 
 3. Pushing to GitHub:
