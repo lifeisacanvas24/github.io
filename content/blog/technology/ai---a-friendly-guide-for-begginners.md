@@ -4,7 +4,7 @@
     date = "2024-10-23"
     author = "[lifeisacanvas24]"
     draft = false
-    updated = "2024-10-23T10:50:17.603428"
+    updated = "2024-10-23T10:54:46.511671"
     reading_time = "N/A"
     social_image = ""
     tags = ["AI", "Artificial Intelligence", "ChatGPT", "Claude", "Perplexity AI", "learning", "prompt engineering", "Jasper AI", "Bard AI", "Gemini AI", "virtual tutors", "interactive practice", "personalized learning"]
@@ -15,7 +15,7 @@
     og_description = "A friendly guide to Artificial Intelligence (AI) for learning, featuring tools like ChatGPT, Claude, Perplexity AI, and more."
     og_image = ""
     og_url = "http://lifeisacanvas24.github.io/blog/technology/ai---a-friendly-guide-for-begginners/"
-    og_type = "post"
+    og_type = "article"
 
     [json_ld]
     type = "BlogPosting"
@@ -23,14 +23,12 @@
     itemprop = [
         { name = "AI - A Friendly Guide for begginners" },
         { description = "A friendly guide to Artificial Intelligence (AI) for learning, featuring tools like ChatGPT, Claude, Perplexity AI, and more." },
-        { url = "http://lifeisacanvas24.github.io/blog/technology//ai---a-friendly-guide-for-begginners/" },
+        { url = "http://lifeisacanvas24.github.io/blog/technology/ai---a-friendly-guide-for-begginners/" },
         { author = "lifeisacanvas24" },
         { datePublished = "2024-10-23" }
     ]
     +++
     
-# AI: A Friendly Guide for Your Friends
-
 This short guide introduces you to Artificial Intelligence (AI) and shows how it can help with learning.
 
 ## What is AI?
@@ -52,7 +50,7 @@ AI is like a smart computer program that can learn and think. It helps with task
   *(Claude focuses on helpful and harmless conversations.)*
 
 - **Perplexity AI**
-  - Mobile: [Perplexity App on iOS](https://apps.apple.com/us/app/perplexity-ai/id1640745955), [Perplexity App on Android](https://play.google.com/store/apps/details?id=ai.perplexity&pli=1)
+  - Mobile: [Perplexity App on iOS](https://apps.apple.com/us/app/perplexity-ai/id1640745955), [Perplexity App on Android](https://play.google.com/store/apps/details?id=ai.perplexity&amp;pli=1)
   - Web: [perplexity.ai](https://www.perplexity.ai)
   *(Perplexity helps you find information quickly and provides detailed answers like a search engine.)*
 
